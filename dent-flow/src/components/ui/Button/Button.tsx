@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { isRightToLeftLanguage } from "../../../i18n/languages";
 import "./Button.css";
 
 /* ================================
@@ -48,7 +49,7 @@ export default function Button({
 }: ButtonProps) {
   const { i18n } = useTranslation();
   const lang = i18n.language;
-  const isRTL = lang === "ar"; // Right-to-left support
+  const isRTL = isRightToLeftLanguage(lang);
 
   /* ================================
      Compute CSS classes

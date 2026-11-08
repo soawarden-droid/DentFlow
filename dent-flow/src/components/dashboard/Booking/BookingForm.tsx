@@ -8,6 +8,7 @@ import FormField from "../../common/FormField/FormField";
 import Button from "../../ui/Button/Button";
 import { parsePhoneNumberFromString } from "libphonenumber-js";
 import { FaCalendarCheck  } from "react-icons/fa";
+import { isRightToLeftLanguage } from "../../../i18n/languages";
 
 // ----------------- Types -----------------
 
@@ -107,7 +108,7 @@ const ControlledField = ({ name, control, ...rest }: any) => (
 
 const BookingForm: React.FC<BookingFormProps> = ({ onAddPatient }) => {
   const { t, i18n } = useTranslation();
-  const isRTL = i18n.dir() === "rtl";
+  const isRTL = isRightToLeftLanguage(i18n.language);
 
   const [formMessage, setFormMessage] = useState<{ type: "error" | "success"; text: string } | null>(null);
 

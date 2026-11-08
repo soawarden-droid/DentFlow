@@ -5,6 +5,7 @@ import PatientsToolbar from "../../components/dashboard/Patients/PatientsToolbar
 import AppBrand from "../../components/common/AppBrand/AppBrand";
 import type { Patient } from "../../types/patient";
 import { usePersistedState } from "../../hooks/usePersistedState";
+import { isRightToLeftLanguage } from "../../i18n/languages";
 import "./Dashboard.css";
 
 /**
@@ -19,7 +20,7 @@ import "./Dashboard.css";
  */
 export default function Dashboard() {
   const { t, i18n } = useTranslation(); // Translation hook
-  const isRTL = i18n.language === "ar"; // Determine RTL layout
+  const isRTL = isRightToLeftLanguage(i18n.language);
 
   /* -----------------------------
      Persistent State

@@ -2,6 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { IoClose } from 'react-icons/io5';
 import Button from '../../ui/Button/Button';
+import { isRightToLeftLanguage } from '../../../i18n/languages';
 import './ConfirmationModal.css';
 
 interface ConfirmationModalProps {
@@ -20,7 +21,7 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
   onConfirm,
 }) => {
   const { t, i18n } = useTranslation();
-  const isRTL = i18n.language === 'ar'; // Determine RTL layout for Arabic or other RTL languages
+  const isRTL = isRightToLeftLanguage(i18n.language);
 
   // Do not render the modal if `isOpen` is false
   if (!isOpen) return null;

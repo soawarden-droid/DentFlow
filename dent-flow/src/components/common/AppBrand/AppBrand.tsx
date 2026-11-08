@@ -1,13 +1,14 @@
 import { FaHeartbeat } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import { Link, useParams } from "react-router-dom";
+import { isRightToLeftLanguage } from "../../../i18n/languages";
 import "./AppBrand.css";
 
 const AppBrand = () => {
   const { t } = useTranslation(); // Translation hook for i18n strings
   const { lang } = useParams(); // Get current language from URL params
 
-  const isRTL = lang === "ar"; // Determine if the layout should be RTL
+  const isRTL = isRightToLeftLanguage(lang);
 
   return (
     <Link

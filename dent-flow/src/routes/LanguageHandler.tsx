@@ -2,19 +2,20 @@ import { useEffect, useContext } from "react";
 import { useParams, Outlet, Navigate } from "react-router-dom";
 import { LanguageContext } from "../context/LanguageContext";
 import { FontContext } from "../context/FontContext";
-
-/**
- * Supported languages for the app
- */
-type AppLang = "en" | "ar";
-const supportedLanguages: AppLang[] = ["en", "ar"];
+import {
+  APP_LANGUAGES,
+  isAppLanguage,
+  isRightToLeftLanguage,
+  type AppLanguage,
+} from "../i18n/languages";
 
 /**
  * Map each language to its default font family
  */
-const fonts: Record<AppLang, string> = {
+const fonts: Record<AppLanguage, string> = {
   ar: "'Cairo', sans-serif",
   en: "'Inter', sans-serif",
+  prs: "'Noto Sans Arabic', sans-serif",
 };
 
 /**
@@ -29,23 +30,22 @@ const fonts: Record<AppLang, string> = {
  * - Redirect invalid routes to last saved language
  */
 export default function LanguageHandler() {
-  const { lang } = useParams<{ lang: AppLang }>();
+  const { lang } = useParams<{ lang: AppLanguage }>();
 
   const { changeLanguage } = useContext(LanguageContext);
   const { setFontFamily } = useContext(FontContext);
 
   // Check if the language in route is valid
-  const isValidLang =
-    typeof lang === "string" &&
-    supportedLanguages.includes(lang as AppLang);
+  const currentLang =
+    APP_LANGUAGES.find((supportedLanguage) => supportedLanguage === lang) ??
+    null;
+  const isValidLang = currentLang !== null;
 
   /**
    * Effect: run whenever the route language changes
    */
   useEffect(() => {
-    if (!isValidLang) return;
-
-    const currentLang = lang as AppLang;
+    if (!currentLang) return;
 
     // Update language in context/i18n
     changeLanguage(currentLang);
@@ -57,19 +57,19 @@ export default function LanguageHandler() {
     setFontFamily(fonts[currentLang]);
 
     // Update HTML attributes: dir (for RTL/LTR) and lang (accessibility)
-    document.documentElement.dir = currentLang === "ar" ? "rtl" : "ltr";
-    document.documentElement.lang = currentLang;
-  }, [isValidLang, lang, changeLanguage, setFontFamily]);
+    document.documentElement.dir = isRightToLeftLanguage(currentLang) ? "rtl" : "ltr";
+    document.documentElement.lang = currentLang === "prs" ? "prs-AF" : currentLang;
+  }, [currentLang, changeLanguage, setFontFamily]);
 
   /**
    * Smart redirect if the route language is invalid
    * - Redirects to last saved language or default "en"
    */
   if (!isValidLang) {
-    const savedLang =
-      localStorage.getItem("app_language") === "ar" ? "ar" : "en";
+    const savedLang = localStorage.getItem("app_language");
+    const redirectLang = isAppLanguage(savedLang) ? savedLang : "en";
 
-    return <Navigate to={`/${savedLang}`} replace />;
+    return <Navigate to={`/${redirectLang}`} replace />;
   }
 
   // Render child routes

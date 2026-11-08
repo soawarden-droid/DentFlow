@@ -1,0 +1,110 @@
+{
+  "titles": {
+    "dashboard": "DentFlow | سیستم هوشمند مدیریت کلینیک",
+    "settings": "تنظیمات | DentFlow",
+    "notFound": "صفحه پیدا نشد | DentFlow"
+  },
+  "settings": {
+    "title": "تنظیمات",
+    "fontSize": "اندازهٔ قلم",
+    "themes": "پوسته‌ها",
+    "increaseFont": "بزرگ‌کردن اندازهٔ قلم",
+    "resetFont": "بازگرداندن اندازهٔ قلم",
+    "decreaseFont": "کوچک‌کردن اندازهٔ قلم"
+  },
+  "themes": {
+    "light": "روشن",
+    "dark": "تیره"
+  },
+  "appBrand": {
+    "title": "DentFlow",
+    "subtitle": "مدیریت هوشمند کلینیک"
+  },
+  "dashboard": {
+    "title": "داشبورد",
+    "subtitle": "نمای کلی فعالیت‌های امروز"
+  },
+  "patientsToolbar": {
+    "searchPlaceholder": "جستجو بر اساس نام یا شمارهٔ تماس...",
+    "settings": "تنظیمات",
+    "language": "زبان",
+    "account": "حساب کاربری",
+    "clearFilters": "پاک‌کردن فیلترها",
+    "resultsFound": "{{count}} نتیجه پیدا شد",
+    "noResults": "نتیجه‌ای پیدا نشد",
+    "status": {
+      "all": "همه",
+      "incoming": "تازه‌وارد",
+      "waiting": "در انتظار",
+      "inTreatment": "تحت درمان",
+      "done": "تکمیل‌شده"
+    },
+    "user": {
+      "profile": "پروفایل",
+      "settings": "تنظیمات",
+      "logout": "خروج"
+    },
+    "lang": {
+      "ar": "عربی",
+      "en": "انگلیسی",
+      "prs": "دری"
+    }
+  },
+  "patientsBoard": {
+    "incoming": "تازه‌وارد",
+    "waiting": "در انتظار",
+    "inTreatment": "تحت درمان",
+    "done": "تکمیل‌شده",
+    "noPatients": "مراجعی وجود ندارد"
+  },
+  "confirmationModal": {
+    "confirmCancellation": "تأیید لغو",
+    "cancelBookingText": "آیا مطمئن هستید که می‌خواهید نوبت {{name}} را لغو کنید؟",
+    "cancel": "لغو",
+    "confirm": "تأیید",
+    "confirmDeletion": "تأیید حذف",
+    "deletePatientText": "آیا مطمئن هستید که می‌خواهید {{name}} را حذف کنید؟"
+  },
+  "patientCard": {
+    "moveToWaiting": "انتقال به فهرست انتظار",
+    "cancelBooking": "لغو نوبت",
+    "startTreatment": "شروع درمان",
+    "finishTreatment": "پایان درمان",
+    "deletePatient": "حذف",
+    "moveToArchive": "انتقال به بایگانی"
+  },
+  "bookingForm": {
+    "title": "گرفتن نوبت",
+    "subText": "لطفاً معلومات زیر را وارد کنید.\nبرای ثبت موفق نوبت، تکمیل همهٔ بخش‌ها الزامی است.",
+    "nameLabel": "نام مراجع",
+    "namePlaceholder": "نام کامل مراجع را وارد کنید",
+    "nameRequired": "لطفاً نام کامل مراجع را وارد کنید",
+    "nameInvalid": "نام باید ۲ تا ۴ واژه داشته باشد؛ هر واژه دست‌کم ۳ حرف و فقط شامل حروف باشد",
+    "nameDoubleSpaces": "لطفاً از فاصله‌های پیاپی استفاده نکنید؛ یک فاصله میان واژه‌ها کافی است",
+    "max50Chars": "نام نباید بیشتر از ۵۰ نویسه باشد",
+    "phoneLabel": "شمارهٔ تماس مراجع",
+    "phoneRequired": "لطفاً شمارهٔ تماس مراجع را وارد کنید",
+    "phonePlaceholder": "شمارهٔ تماس مراجع را وارد کنید",
+    "phoneInvalid": "لطفاً شمارهٔ تماس معتبر وارد کنید",
+    "phonePrefixError": "لطفاً شمارهٔ تماس معتبری با پیش‌شمارهٔ درست وارد کنید",
+    "bloodTypeLabel": "گروه خونی",
+    "bloodTypePlaceholder": "گروه خونی را انتخاب کنید",
+    "bloodTypeRequired": "لطفاً گروه خونی مراجع را انتخاب کنید",
+    "dateLabel": "تاریخ نوبت",
+    "datePlaceholder": "تاریخ نوبت را انتخاب کنید",
+    "dateRequired": "لطفاً تاریخ نوبت را انتخاب کنید",
+    "dateFuture": "تاریخ نوبت باید امروز یا پس از آن باشد",
+    "bookingTypeLabel": "نوع نوبت",
+    "bookingTypePlaceholder": "نوع نوبت را انتخاب کنید",
+    "bookingTypeRequired": "لطفاً نوع نوبت را انتخاب کنید",
+    "bookingType": {
+      "preBooked": "از پیش رزروشده",
+      "walkIn": "مراجعهٔ حضوری",
+      "emergency": "عاجل"
+    },
+    "submitButton": "ثبت نوبت",
+    "submitting": "در حال ثبت...",
+    "errorMessage": "❌ لطفاً همهٔ بخش‌های الزامی را درست تکمیل کنید",
+    "successMessage": "✔ نوبت با موفقیت ثبت شد! مراجع به فهرست تازه‌واردها افزوده شد"
+  }
+}

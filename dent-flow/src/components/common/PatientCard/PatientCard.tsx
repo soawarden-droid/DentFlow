@@ -2,6 +2,7 @@ import type { Patient } from '../../../types/patient';
 import { FaUser, FaPhone, FaCalendarAlt, FaHeartbeat, FaBookmark } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
 import Button from '../../ui/Button/Button';
+import { isRightToLeftLanguage } from '../../../i18n/languages';
 import './PatientCard.css';
 
 // ---------------------------------------------
@@ -70,7 +71,7 @@ const capitalizeWords = (str: string) => str.replace(/\b\w/g, char => char.toUpp
 // ---------------------------------------------
 const PatientCard: React.FC<PatientCardProps> = ({ patient, onUpdateStatus, onOpenDeleteModal }) => {
   const { t, i18n } = useTranslation();
-  const isRTL = i18n.dir() === 'rtl'; // Detect RTL languages
+  const isRTL = isRightToLeftLanguage(i18n.language);
 
   // ---------------------------------------------
   // Define dynamic action buttons based on patient status

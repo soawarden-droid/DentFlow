@@ -3,6 +3,7 @@ import ThemeSwitcher from "../../ui/ThemeSwitcher/ThemeSwitcher";
 import FontSwitcher from "../../ui/FontSwitcher/FontSwitcher";
 import { useTranslation } from "react-i18next";
 import { FontContext } from "../../../context/FontContext";
+import { isRightToLeftLanguage } from "../../../i18n/languages";
 import { FiSettings } from "react-icons/fi";
 import { IoClose } from "react-icons/io5";
 import "./Settings.css";
@@ -13,7 +14,7 @@ interface SettingsProps {
 
 function Settings({ onClose }: SettingsProps) {
   const { t, i18n } = useTranslation();
-  const isRTL = i18n.language === "ar"; // Determine if current language is Right-to-Left
+  const isRTL = isRightToLeftLanguage(i18n.language);
   const { fontSize } = useContext(FontContext); // Get current font size from context
 
   // Prevent clicks inside the modal from closing it

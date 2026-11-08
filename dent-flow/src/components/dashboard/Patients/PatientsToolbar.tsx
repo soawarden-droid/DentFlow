@@ -20,6 +20,7 @@ import {
   FaSyncAlt,
 } from "react-icons/fa";
 import ReactCountryFlag from "react-country-flag";
+import { type AppLanguage } from "../../../i18n/languages";
 import "./PatientsToolbar.css";
 
 // ---------------------------------------------
@@ -52,6 +53,11 @@ const PatientsToolbar: React.FC<PatientsToolbarProps> = ({
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const { lang: currentLang } = useParams();
+  const languages: { code: AppLanguage; countryCode: string }[] = [
+    { code: "ar", countryCode: "AE" },
+    { code: "en", countryCode: "GB" },
+    { code: "prs", countryCode: "AF" },
+  ];
 
   // Active modal/dropdown state
   const [activeModal, setActiveModal] = useState<ActiveModal>(null);
@@ -108,7 +114,7 @@ const PatientsToolbar: React.FC<PatientsToolbarProps> = ({
   // ---------------------------------------------
   // Switch language and navigate
   // ---------------------------------------------
-  const switchLanguage = (newLang: "ar" | "en") => {
+  const switchLanguage = (newLang: AppLanguage) => {
     if (newLang === currentLang) return;
     navigate(`/${newLang}`);
     setActiveModal(null); // Close language dropdown
@@ -205,18 +211,18 @@ const PatientsToolbar: React.FC<PatientsToolbarProps> = ({
 
             {activeModal === "language" && (
               <div className="user-dropdown lang-dropdown" ref={langDropdownRef}>
-                {i18n.language !== "ar" && (
-                  <button onClick={() => switchLanguage("ar")}>
-                    <ReactCountryFlag countryCode="AE" svg className="flag-icon" />{" "}
-                    {t("patientsToolbar.lang.ar")}
-                  </button>
-                )}
-                {i18n.language !== "en" && (
-                  <button onClick={() => switchLanguage("en")}>
-                    <ReactCountryFlag countryCode="GB" svg className="flag-icon" />{" "}
-                    {t("patientsToolbar.lang.en")}
-                  </button>
-                )}
+                {languages
+                  .filter(({ code }) => code !== i18n.language)
+                  .map(({ code, countryCode }) => (
+                    <button key={code} onClick={() => switchLanguage(code)}>
+                      <ReactCountryFlag
+                        countryCode={countryCode}
+                        svg
+                        className="flag-icon"
+                      />{" "}
+                      {t(`patientsToolbar.lang.${code}`)}
+                    </button>
+                  ))}
               </div>
             )}
           </div>

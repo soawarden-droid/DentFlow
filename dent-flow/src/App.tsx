@@ -1,6 +1,7 @@
 import { useEffect, useContext } from "react";
 import { LanguageContext } from "./context/LanguageContext";
 import AppRouter from "./routes/AppRouter";
+import { isRightToLeftLanguage } from "./i18n/languages";
 
 /* -----------------------------
    App Component
@@ -18,7 +19,7 @@ export default function App() {
   useEffect(() => {
     document.documentElement.setAttribute(
       "dir",
-      language === "ar" ? "rtl" : "ltr"
+      isRightToLeftLanguage(language) ? "rtl" : "ltr"
     );
   }, [language]);
 

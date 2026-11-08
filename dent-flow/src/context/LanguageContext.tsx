@@ -1,17 +1,13 @@
 import React, { createContext, useState } from "react";
 import i18n from "../i18n/i18n";
-
-/* -----------------------------
-   Supported Languages
------------------------------ */
-type Lang = "ar" | "en";
+import { isAppLanguage, type AppLanguage } from "../i18n/languages";
 
 /* -----------------------------
    Context Type Definition
 ----------------------------- */
 interface LanguageContextType {
-  language: Lang;                 // Current app language
-  changeLanguage: (lang: Lang) => void; // Function to switch language
+  language: AppLanguage;                 // Current app language
+  changeLanguage: (lang: AppLanguage) => void; // Function to switch language
 }
 
 /* -----------------------------
@@ -27,11 +23,11 @@ export const LanguageContext = createContext<LanguageContextType>({
    Detect language based on domain
    Fallback for first-time users if no language saved
 ----------------------------- */
-function detectLanguageFromDomain(): Lang {
+function detectLanguageFromDomain(): AppLanguage {
   try {
     const hostname = window.location.hostname.toLowerCase();
 
-    const domainLangMap: Record<string, Lang> = {
+    const domainLangMap: Record<string, AppLanguage> = {
       "ae.web.app": "ar",
       "us.web.app": "en",
     };
@@ -52,18 +48,18 @@ function detectLanguageFromDomain(): Lang {
 ----------------------------- */
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   // Initialize language from localStorage or domain detection
-  const [language, setLanguage] = useState<Lang>(() => {
-    return (
-      (localStorage.getItem("app-language") as Lang) ||
-      detectLanguageFromDomain()
-    );
+  const [language, setLanguage] = useState<AppLanguage>(() => {
+    const savedLanguage = localStorage.getItem("app-language");
+    return isAppLanguage(savedLanguage)
+      ? savedLanguage
+      : detectLanguageFromDomain();
   });
 
   /* -----------------------------
      Switch language handler
      Updates state, localStorage, and i18n instance
   ----------------------------- */
-  const changeLanguage = (lang: Lang) => {
+  const changeLanguage = (lang: AppLanguage) => {
     setLanguage(lang);
     localStorage.setItem("app-language", lang);
     i18n.changeLanguage(lang);

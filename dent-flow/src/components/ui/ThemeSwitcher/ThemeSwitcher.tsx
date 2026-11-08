@@ -5,6 +5,7 @@ import type { ThemeName } from "../../../context/ThemeContext";
 
 import { FaSun, FaMoon } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
+import { isRightToLeftLanguage } from "../../../i18n/languages";
 import "./ThemeSwitcher.css";
 
 export interface ThemeSwitcherProps {
@@ -24,7 +25,7 @@ const ThemeSwitcher: FC<ThemeSwitcherProps> = ({
 }) => {
   const { theme, setTheme, themes } = useContext(ThemeContext); // Access current theme and setter
   const { t, i18n } = useTranslation();
-  const isRTL = i18n.language === "ar"; // Adjust layout for RTL languages
+  const isRTL = isRightToLeftLanguage(i18n.language);
 
   // Compute container CSS classes dynamically
   const containerClass = `theme-container ${displayInline ? "inline" : ""} ${

@@ -2,7 +2,7 @@
 
 💼 **Personal Project | March 2026**
 
-DentFlow is a fully responsive, bilingual dental clinic management system built with React & TypeScript.  
+DentFlow is a fully responsive, multilingual dental clinic management system built with React & TypeScript.
 It simulates a real-world clinic workflow with state-driven patient lifecycle management and advanced UI customization features.
 
 Designed with performance, accessibility, multilingual support, theme control, and SEO optimization.
@@ -18,7 +18,7 @@ Designed with performance, accessibility, multilingual support, theme control, a
 ## ✨ Core Highlights
 
 - 🦷 Complete patient lifecycle management
-- 🌍 Arabic / English with automatic RTL/LTR switching
+- 🌍 English, Arabic, and Dari (prs-AF) with automatic LTR/RTL switching
 - 🎨 Light & Dark theme support
 - 🔤 Dynamic font family & font size control
 - 📱 Fully responsive (Mobile / Tablet / Desktop / Landscape)
@@ -56,8 +56,8 @@ Designed with performance, accessibility, multilingual support, theme control, a
 - Cancel, delete, or update records
 - Confirmation modals for destructive actions
 
-### 🌍 Bilingual & RTL System
-- Arabic / English toggle with automatic direction switching
+### 🌍 Multilingual & RTL System
+- English, Arabic, and Dari toggle with automatic direction switching
 - Translated labels, placeholders, validation errors
 - Dedicated font per language
 

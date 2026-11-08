@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import useAutoPageTitle from "../hooks/useAutoPageTitle";
 import LanguageHandler from "./LanguageHandler";
 import Dashboard from "../pages/Dashboard/Dashboard";
+import { isAppLanguage, type AppLanguage } from "../i18n/languages";
 
 /**
  * AppRouter
@@ -13,15 +14,18 @@ import Dashboard from "../pages/Dashboard/Dashboard";
 export default function AppRouter() {
   // Get saved language from localStorage or detect browser language
   const savedLang = localStorage.getItem("app_language");
-  const browserLang = navigator.language.split("-")[0];
+  const browserLang = navigator.language.toLowerCase();
+  const detectedLang: AppLanguage =
+    browserLang === "ar" || browserLang.startsWith("ar-")
+      ? "ar"
+      : browserLang === "prs" ||
+          browserLang.startsWith("prs-") ||
+          browserLang === "fa-af"
+        ? "prs"
+        : "en";
 
   // Determine initial language for routing fallback
-  const initialLang =
-    savedLang === "ar" || savedLang === "en"
-      ? savedLang
-      : browserLang === "ar"
-      ? "ar"
-      : "en";
+  const initialLang = isAppLanguage(savedLang) ? savedLang : detectedLang;
 
   return (
     <BrowserRouter>
